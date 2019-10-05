@@ -1,0 +1,6 @@
+#!/bin/bash
+docker run -d --rm --name mynotebook -v $PWD:/notebooks -p 8888:8888 yangxh/lab:latest 
+sleep 3
+# Find a line with URL and replace the text up to ')' with 'http://localhost'
+docker logs mynotebook 2>&1 | sed -n 's/^[/:(. 0-9a-z]*)/http:\/\/localhost/p'
+
